@@ -27,3 +27,11 @@ Client/sysinfo.txt
 # Builds
 Client/*.apk
 Client/*.unitypackage
+
+# Visual Studio
+**/Debug/*
+**/Release/*
+**/x64/*
+*.VC.opendb
+*.VC.db
+*.ipch
