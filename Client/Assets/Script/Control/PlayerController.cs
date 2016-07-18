@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
     public Game game;
 
-    private void FixedUpdate()
+    private void Update()
     {
         int x = 0;
         int y = 0;
