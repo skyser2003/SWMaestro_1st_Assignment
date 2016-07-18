@@ -18,6 +18,11 @@ public class Logic {
         BlockList = new List<Block>();
     }
 
+    public void Add(int x, int y)
+    {
+        map[x, y] = new Block();
+    }
+
     public void Move(int x, int y)
     {
         x = Math.Sign(x);
@@ -41,32 +46,38 @@ public class Logic {
 
         if (x == 1) {
             startX = Width - 1;
-            endX = -1;
+            endX = 0;
         }
-        else {
+        else if (x == -1) {
             startX = 0;
-            endX = Width;
+            endX = Width - 1;
         }
 
         if (y == 1) {
             startY = Height - 1;
-            endY = -1;
+            endY = 0;
         }
-        else {
+        else if (y == -1) {
             startY = 0;
-            endY = Height;
+            endY = Height - 1;
         }
 
-        Action<int, int> findMergeList = (lineX, lineY) => {
+        Action<int, int, bool, bool> findMergeList = (lineX, lineY, checkX, checkY) => {
             MergeBlock lastMerge = null;
 
             int i = lineX;
             int j = lineY;
 
-            while (i != endX || j != endY) {
+            while ((checkX && (i != endX)) || (checkY && (j != endY))) {
                 var block = map[i, j];
-                i += deltaX;
-                j += deltaY;
+
+                if (i != endX) {
+                    i += deltaX;
+                }
+
+                if (j != endY) {
+                    j += deltaY;
+                }
 
                 if (block == null) {
                     continue;
@@ -91,12 +102,12 @@ public class Logic {
 
         if (x != 0 && y == 0) {
             for (int i = 0; i < Height; ++i) {
-                findMergeList(startX, i);
+                findMergeList(startX, i, false, true);
             }
         }
         else if (x == 0 && y != 0) {
             for (int i = 0; i < Width; ++i) {
-                findMergeList(i, startY);
+                findMergeList(i, startY, true, false);
             }
         }
         else {

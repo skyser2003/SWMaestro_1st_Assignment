@@ -31,6 +31,12 @@ public class Game : MonoBehaviour {
 
         logic = new Logic();
         logic.Init(Width, Height);
+
+        for (int i = 0; i < Width; ++i) {
+            for (int j = 0; j < Height; ++j) {
+                logic.Add(i, j);
+            }
+        }
     }
 
     public void Move(int x, int y)
