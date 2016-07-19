@@ -8,7 +8,7 @@ public partial class NetworkClient : MonoBehaviour {
 
     private TCPClient client;
 
-    private string serverIP = "localhost";
+    private string serverIP = "skyser.kr";
 
     // Use this for initialization
     void Start()
