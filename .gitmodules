@@ -1,3 +1,6 @@
 [submodule "Server/FG-Network"]
 	path = Server/FG-Network
 	url = https://github.com/skyser2003/FG-Network
+[submodule "CMakeHelper"]
+	path = CMakeHelper
+	url = https://github.com/skyser2003/CMakeHelper
