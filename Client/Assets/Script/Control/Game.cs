@@ -8,6 +8,8 @@ public class Game : MonoBehaviour {
     public int Width { get; private set; }
     public int Height { get; private set; }
 
+    public GameObject Field;
+
     private void Start()
     {
         Width = 4;
@@ -21,6 +23,7 @@ public class Game : MonoBehaviour {
             for (int j = 0; j < Height; ++j) {
                 blockViewList[i, j] = (Instantiate(Resources.Load("Prefabs/Block") as GameObject)).GetComponent<BlockView>();
                 blockViewList[i, j].Init(logic.Map[i, j]);
+                blockViewList[i, j].transform.SetParent(Field.transform);
             }
         }
 
@@ -29,6 +32,7 @@ public class Game : MonoBehaviour {
             for (int j = 0; j < Height; ++j) {
                 cellViewList[i, j] = (Instantiate(Resources.Load("Prefabs/Cell") as GameObject)).GetComponent<CellView>();
                 cellViewList[i, j].transform.position = new Vector2(i, j);
+                cellViewList[i, j].transform.SetParent(Field.transform);
             }
         }
 

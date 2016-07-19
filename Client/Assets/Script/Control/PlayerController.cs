@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour {
 
                 if (game.IsGameEnd() == true) {
                     canvas.gameObject.SetActive(true);
+                    game.Field.SetActive(false);
                     Debug.Log("Game over");
                 }
                 else {
