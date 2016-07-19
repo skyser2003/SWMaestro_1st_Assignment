@@ -13,10 +13,14 @@ public class Game : MonoBehaviour {
         Width = 4;
         Height = 4;
 
+        logic = new Logic();
+        logic.Init(Width, Height);
+
         blockViewList = new BlockView[Width, Height];
         for (int i = 0; i < Width; ++i) {
             for (int j = 0; j < Height; ++j) {
                 blockViewList[i, j] = (Instantiate(Resources.Load("Prefabs/Block") as GameObject)).GetComponent<BlockView>();
+                blockViewList[i, j].Init(logic.Map[i, j]);
                 blockViewList[i, j].transform.position = new Vector3(i, j, -1);
             }
         }
@@ -28,9 +32,6 @@ public class Game : MonoBehaviour {
                 cellViewList[i, j].transform.position = new Vector2(i, j);
             }
         }
-
-        logic = new Logic();
-        logic.Init(Width, Height);
     }
 
     public void Move(int x, int y)
@@ -50,7 +51,7 @@ public class Game : MonoBehaviour {
             var blockView = blockViewList[block.X, block.Y];
             blockView.gameObject.SetActive(true);
 
-            blockView.Init(block);
+            blockView.SetBlock(block);
             blockView.Refresh();
         }
     }
