@@ -21,6 +21,22 @@ public class PlayerController : MonoBehaviour {
         else if (Input.GetKeyDown(KeyCode.D)) {
             x = 1;
         }
+        else if (Input.GetKeyDown(KeyCode.Q)) {
+            x = -1;
+            y = 1;
+        }
+        else if (Input.GetKeyDown(KeyCode.E)) {
+            x = 1;
+            y = 1;
+        }
+        else if (Input.GetKeyDown(KeyCode.Z)) {
+            x = -1;
+            y = -1;
+        }
+        else if (Input.GetKeyDown(KeyCode.C)) {
+            x = 1;
+            y = -1;
+        }
 
         if (x != 0 || y != 0) {
             game.Move(x, y);
