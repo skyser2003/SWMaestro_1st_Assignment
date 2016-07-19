@@ -1,22 +1,17 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "name": "Server",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/skyser2003/SWMaestro_1st_Assignment.git"
-  },
-  "author": "Seung Ho Jang",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/skyser2003/SWMaestro_1st_Assignment/issues"
-  },
-  "homepage": "https://github.com/skyser2003/SWMaestro_1st_Assignment#readme",
   "dependencies": {
-    "express": "^4.14.0"
+    "body-parser": "~1.15.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "ejs": "~2.4.1",
+    "express": "~4.13.4",
+    "morgan": "~1.7.0",
+    "serve-favicon": "~2.3.0"
   }
 }
