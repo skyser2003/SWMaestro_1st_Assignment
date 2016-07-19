@@ -21,18 +21,20 @@ public class Logic {
         map = new Block[Width, Height];
         BlockList = new List<Block>();
 
-        for (int i = 0; i < Width; ++i) {
-            for (int j = 0; j < Height; ++j) {
-                Add(i, j);
-            }
-        }
-
         random = new Random();
+
+        AddRandom();
+        AddRandom();
     }
 
     public void Add(int x, int y)
     {
-        var block = new Block();
+        Add(x, y, 1);
+    }
+
+    public void Add(int x, int y, int value)
+    {
+        var block = new Block(value);
         block.X = x;
         block.Y = y;
 
@@ -51,7 +53,8 @@ public class Logic {
             int y = random.Next(Height);
 
             if (map[x, y] == null) {
-                Add(x, y);
+                int value = random.Next(1, 3) * 2;
+                Add(x, y, value);
                 break;
             }
         }

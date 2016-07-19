@@ -3,9 +3,9 @@
 
     public int Value { get; private set; }
 
-    public Block()
+    public Block(int value)
     {
-        Value = 1;
+        Value = value;
     }
 
     public void Add(Block other)
