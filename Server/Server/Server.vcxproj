@@ -55,6 +55,9 @@
     <Link>
       <AdditionalLibraryDirectories>C:/Boost/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>(robocopy /IS /NP /W:5 $(TargetDir) $(SolutionDir)..\..\bin_server $(TargetFileName)) ^&amp; IF %ERRORLEVEL% LEQ 1 exit 0</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -73,6 +76,9 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>C:/Boost/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>(robocopy /IS /NP /W:5 $(TargetDir) $(SolutionDir)..\..\bin_server $(TargetFileName)) ^&amp; IF %ERRORLEVEL% LEQ 1 exit 0</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="pch\stdafx.cpp">

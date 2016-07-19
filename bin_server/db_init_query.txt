@@ -1,0 +1,5 @@
+CREATE TABLE `HIGH_SCORE` (
+	`name`	TEXT NOT NULL UNIQUE,
+	`score`	INTEGER,
+	PRIMARY KEY(name)
+);

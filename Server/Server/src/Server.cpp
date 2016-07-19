@@ -3,10 +3,16 @@
 
 #include "FGServer.h"
 #include "Client.h"
+#include "DBManager.h"
 
 #include "PkEnumInfoHelper.h"
 
 Server::Server()
+{
+
+}
+
+Server::~Server()
 {
 
 }
@@ -17,6 +23,9 @@ void Server::Init(int port)
 
 	handler.reset(new PacketHandler<Client>);
 	handler->Init<GetIntVal(PKENUM::CSPacketEnum::CS_BEGIN), GetIntVal(PKENUM::CSPacketEnum::CS_END)>();
+
+	db.reset(new DBManager);
+	db->Init("db");
 }
 
 void Server::Destroy()

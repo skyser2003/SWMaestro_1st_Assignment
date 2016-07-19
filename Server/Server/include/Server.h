@@ -6,11 +6,13 @@
 #include "PacketHandler.h"
 
 class Client;
+class DBManager;
 
 class Server : public AbstractServer
 {
 public:
 	Server();
+	~Server();
 
 	virtual void Init(int port) override;
 	virtual void Destroy() override;
@@ -22,4 +24,6 @@ private:
 
 	std::map<int, std::shared_ptr<Client>> clientList;
 	std::unique_ptr<PacketHandler<Client>> handler;
+
+	std::unique_ptr<DBManager> db;
 };
