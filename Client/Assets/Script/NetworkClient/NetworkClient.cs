@@ -22,7 +22,7 @@ public partial class NetworkClient : MonoBehaviour {
         client.Init(serverIP, 3999);
         client.Connect();
 
-        Debug.Log("try connect");
+        Debug.Log("Try connect");
     }
 
     // Update is called once per frame
