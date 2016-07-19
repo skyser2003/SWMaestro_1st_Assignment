@@ -11,6 +11,8 @@ public class Logic {
 
     public Block[,] Map { get { return map; } }
 
+    public Random random;
+
     public void Init(int width, int height)
     {
         Width = width;
@@ -21,28 +23,85 @@ public class Logic {
 
         for (int i = 0; i < Width; ++i) {
             for (int j = 0; j < Height; ++j) {
-                var block = new Block();
-                block.X = i;
-                block.Y = j;
-
-                map[i, j] = block;
-                BlockList.Add(block);
+                Add(i, j);
             }
         }
+
+        random = new Random();
     }
 
     public void Add(int x, int y)
     {
-        map[x, y] = new Block();
+        var block = new Block();
+        block.X = x;
+        block.Y = y;
+
+        map[x, y] = block;
+        BlockList.Add(block);
     }
 
-    public void Move(int x, int y)
+    public void AddRandom()
+    {
+        if (BlockList.Count == Width * Height) {
+            return;
+        }
+
+        while (true) {
+            int x = random.Next(Width);
+            int y = random.Next(Height);
+
+            if (map[x, y] == null) {
+                Add(x, y);
+                break;
+            }
+        }
+    }
+
+    public bool IsGameEnd()
+    {
+        if (BlockList.Count != Width * Height) {
+            return false;
+        }
+
+        int[] xRange = { -1, 0, 1 };
+        int[] yRange = { -1, 0, 1 };
+
+        foreach (var block in BlockList) {
+            foreach (int x in xRange) {
+                foreach (int y in yRange) {
+                    if (x == 0 && y == 0) {
+                        continue;
+                    }
+
+                    int nearX = block.X + x;
+                    int nearY = block.Y + y;
+
+                    if (IsInRange(nearX, nearY) == false) {
+                        continue;
+                    }
+
+                    var nearBlock = map[nearX, nearY];
+                    if (nearBlock == null) {
+                        continue;
+                    }
+
+                    if (nearBlock.Value == block.Value) {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+
+    public bool Move(int x, int y)
     {
         x = Math.Sign(x);
         y = Math.Sign(y);
 
         var mergeLineList = DoMerge(x, y);
-        AlignAfterMerge(x, y, mergeLineList);
+        return AlignAfterMerge(x, y, mergeLineList);
     }
 
     private Dictionary<Vec2, List<MergeBlock>> DoMerge(int x, int y)
@@ -157,10 +216,12 @@ public class Logic {
         return mergeLineList;
     }
 
-    private void AlignAfterMerge(int x, int y, Dictionary<Vec2, List<MergeBlock>> mergeLineList)
+    private bool AlignAfterMerge(int x, int y, Dictionary<Vec2, List<MergeBlock>> mergeLineList)
     {
         int deltaX = -x;
         int deltaY = -y;
+
+        var prevMap = (Block[,])map.Clone();
 
         // Clear
         for (int i = 0; i < Width; ++i) {
@@ -187,6 +248,26 @@ public class Logic {
                 newY += deltaY;
             }
         }
+
+        // Check if changed
+        for (int i = 0; i < Width; ++i) {
+            for (int j = 0; j < Height; ++j) {
+                var prevBlock = prevMap[i, j];
+                var newBlock = map[i, j];
+
+                if (prevBlock == null && newBlock == null) {
+                    continue;
+                }
+                if (prevBlock == null || newBlock == null) {
+                    return true;
+                }
+                if (prevBlock.Value != newBlock.Value) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     public void Reposition(Block block, int newX, int newY)

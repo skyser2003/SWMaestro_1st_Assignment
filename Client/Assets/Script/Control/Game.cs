@@ -34,11 +34,25 @@ public class Game : MonoBehaviour {
         }
     }
 
-    public void Move(int x, int y)
+    public bool Move(int x, int y)
     {
-        logic.Move(x, y);
+        bool changed = logic.Move(x, y);
 
-        RefreshView();
+        if (changed == true) {
+            RefreshView();
+        }
+
+        return changed;
+    }
+
+    public void AddRandom()
+    {
+        logic.AddRandom();
+    }
+
+    public bool IsGameEnd()
+    {
+        return logic.IsGameEnd();
     }
 
     public void RefreshView()

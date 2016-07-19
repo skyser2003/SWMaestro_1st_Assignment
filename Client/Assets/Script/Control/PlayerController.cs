@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
     public Game game;
+    public Canvas canvas;
 
     private void Update()
     {
@@ -39,7 +40,23 @@ public class PlayerController : MonoBehaviour {
         }
 
         if (x != 0 || y != 0) {
-            game.Move(x, y);
+            bool changed = game.Move(x, y);
+            if (changed == true) {
+                game.AddRandom();
+                game.RefreshView();
+
+                if (game.IsGameEnd() == true) {
+                    canvas.gameObject.SetActive(true);
+                    Debug.Log("Game over");
+                }
+                else {
+                    Debug.Log("Moved");
+                }
+            }
+            else {
+                Debug.Log("No merge");
+                // Do nothing
+            }
         }
     }
 }
