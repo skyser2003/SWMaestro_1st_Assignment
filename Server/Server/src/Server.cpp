@@ -41,10 +41,15 @@ void Server::Run()
 	}
 }
 
+DBManager* Server::GetDB() const
+{
+	return db.get();
+}
+
 void Server::OnAccept(FG::ConnectionPointer& conn)
 {
 	auto client = std::shared_ptr<Client>(new Client);
-	client->Init(conn);
+	client->Init(this, conn);
 
 	clientList[conn->GetID()] = client;
 }

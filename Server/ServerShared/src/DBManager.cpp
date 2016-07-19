@@ -24,6 +24,7 @@ void DBManager::Init(const std::string& dbName)
 	db->Connect(dbName);
 }
 
+/*
 bool DBManager::Join(const std::string& id, const std::string& pw)
 {
 	if (db == nullptr)
@@ -55,45 +56,45 @@ bool DBManager::Login(const std::string& id, const std::string& pw)
 
 	return ret;
 }
+*/
 
-bool DBManager::SetFamilyName(int uid, const std::string& familyName)
+bool DBManager::SetHighScore(const std::string& name, int score)
 {
 	if (db == nullptr)
 	{
 		return false;
 	}
 
-	std::string query = (boost::format("UPDATE ACCOUNT SET family_name = '%s' WHERE uid = %s") % familyName % uid).str();
-
+	std::string query = (boost::format("INSERT OR REPLACE INTO HIGH_SCORE (name, score) VALUES (%d, %d, %d)") % name % score).str();
 	return db->Query(query);
 }
 
-int DBManager::GetAccountUid(const std::string& id)
+std::vector<Score> DBManager::GetScoreList()
 {
-	if (db == nullptr)
+	std::vector<Score> ret;
+
+	std::string query = (boost::format("SELECT * FROM HIGH_SCORE ORDER BY score").str());
+	db->Query(query, [&ret](int numColumn, char** fieldList, char** columnNameList)
 	{
-		return -1;
-	}
+		Score score;
 
-	int uid = -1;
+		for (int i = 0; i < numColumn; ++i)
+		{
+			char* columnName = columnNameList[i];
+			char* field = fieldList[i];
 
-	std::string query = (boost::format("SELECT uid FROM ACCOUNT WHERE id = '%s'") % id).str();
+			if (strcmp(columnName, "score") == 0)
+			{
+				score.score = atoi(field);
+			}
+			else if (strcmp(columnName, "name") == 0)
+			{
+				score.name = field;
+			}
+		}
 
-	db->Query(query, [&uid](int numCoumn, char** fieldList, char** columnNameList)
-	{
-		uid = std::stoi(fieldList[0]);
+		ret.push_back(score);
 	});
 
-	return uid;
-}
-
-bool DBManager::SetFieldState(int uid, int fieldID, int characterState)
-{
-	if (db == nullptr)
-	{
-		return false;
-	}
-
-	std::string query = (boost::format("INSERT OR REPLACE INTO USER_FIELD_INFO (uid, field_id, character_state) VALUES (%d, %d, %d)") % uid % fieldID % characterState).str();
-	return db->Query(query);
+	return ret;
 }

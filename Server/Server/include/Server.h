@@ -19,6 +19,8 @@ public:
 
 	void Run();
 
+	DBManager* GetDB() const;
+
 private:
 	virtual void OnAccept(FG::ConnectionPointer& conn) override;
 
