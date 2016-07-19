@@ -1,22 +1,13 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class BlockView : MonoBehaviour {
     private Block block;
-
-    private Canvas canvas;
-    private Camera cam;
-    private Text text;
+    private TextMesh text;
 
     public void Init(Block block)
     {
         SetBlock(block);
-        cam = FindObjectOfType<Camera>();
-        canvas = FindObjectOfType<Canvas>();
-
-        text = new GameObject().AddComponent<Text>();
-        text.transform.SetParent(canvas.gameObject.transform);
-        text.text = block.Value.ToString();
+        text = GetComponentInChildren<TextMesh>();
     }
 
     public void SetBlock(Block block)
@@ -27,9 +18,7 @@ public class BlockView : MonoBehaviour {
     public void Refresh()
     {
         transform.position = new Vector2(block.X, block.Y);
-
-        var uiPos = GetScreenPosition(transform, canvas, cam);
-        text.transform.position = uiPos;
+        text.text = block.Value.ToString();
     }
 
     public static Vector3 GetScreenPosition(Transform transform, Canvas canvas, Camera cam)
