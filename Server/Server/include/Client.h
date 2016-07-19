@@ -6,13 +6,14 @@
 #include "PksInfoHelper.h"
 
 class Server;
+class NetworkClient;
 
 class Client
 {
 public:
 	~Client();
 
-	void Init(Server* server, FG::ConnectionPointer conn);
+	void Init(Server* server, NetworkClient* netClient);
 
 	template <class Message>
 	void Send(const Message& msg)
@@ -27,5 +28,5 @@ public:
 
 private:
 	Server* server;
-	FG::ConnectionPointer conn = nullptr;
+	std::unique_ptr<NetworkClient> netClient;
 };

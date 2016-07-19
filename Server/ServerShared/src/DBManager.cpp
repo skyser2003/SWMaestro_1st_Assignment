@@ -65,7 +65,7 @@ bool DBManager::SetHighScore(const std::string& name, int score)
 		return false;
 	}
 
-	std::string query = (boost::format("INSERT OR REPLACE INTO HIGH_SCORE (name, score) VALUES (%d, %d, %d)") % name % score).str();
+	std::string query = (boost::format("INSERT OR REPLACE INTO HIGH_SCORE (name, score) VALUES ('%s', %d)") % name % score).str();
 	return db->Query(query);
 }
 

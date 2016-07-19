@@ -23,6 +23,7 @@ public:
 
 private:
 	virtual void OnAccept(FG::ConnectionPointer& conn) override;
+	void OnDisconnect(std::shared_ptr<Client> client);
 
 	std::map<int, std::shared_ptr<Client>> clientList;
 	std::unique_ptr<PacketHandler<Client>> handler;

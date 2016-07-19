@@ -4,6 +4,7 @@
 #include "FGServer.h"
 #include "Client.h"
 #include "DBManager.h"
+#include "NetworkClient.h"
 
 #include "PkEnumInfoHelper.h"
 
@@ -48,8 +49,30 @@ DBManager* Server::GetDB() const
 
 void Server::OnAccept(FG::ConnectionPointer& conn)
 {
+	// User
 	auto client = std::shared_ptr<Client>(new Client);
-	client->Init(this, conn);
+	auto* netClient = new NetworkClient;
+
+	netClient->Init(conn);
+	netClient->SetPacketHandler([this, client = client.get()](int id, int length, char* data) -> bool
+	{
+		return handler->OnPacketReceive(client, id, length, data);
+	});
+	netClient->SetDisconnectHandler(std::bind(&Server::OnDisconnect, this, client));
+
+	client->Init(this, netClient);
 
 	clientList[conn->GetID()] = client;
+}
+
+void Server::OnDisconnect(std::shared_ptr<Client> client)
+{
+	for (auto pair : clientList)
+	{
+		if (pair.second == client)
+		{
+			clientList.erase(pair.first);
+			return;
+		}
+	}
 }
