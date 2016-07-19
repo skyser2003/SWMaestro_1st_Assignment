@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/skyser2003/SWMaestro_1st_Assignment/issues"
   },
-  "homepage": "https://github.com/skyser2003/SWMaestro_1st_Assignment#readme"
+  "homepage": "https://github.com/skyser2003/SWMaestro_1st_Assignment#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
 }
