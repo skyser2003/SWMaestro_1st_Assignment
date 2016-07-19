@@ -1,0 +1,23 @@
+#pragma once
+
+#include "enum/enum_cs.pb.h"
+#include "enum/enum_sc.pb.h"
+
+#include "struct/struct_cs.pb.h"
+#include "struct/struct_sc.pb.h"
+
+// Declaration only
+template <class PKS>
+class PKSInfo;
+<% for (var i in list) {
+    var pksName = list[i].pksName;
+    var enumType = list[i].enumType;
+    var enumName = list[i].enumName;
+%>
+template <>
+class PKSInfo<<%= pksName %>>
+{
+public:
+	static const <%= enumType %> enumVal = <%= enumName %>;
+};
+<% } %>

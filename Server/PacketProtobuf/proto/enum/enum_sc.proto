@@ -1,0 +1,10 @@
+package PKENUM;
+
+enum SCPacketEnum
+{
+	SC_BEGIN = 100;
+
+	SC_HIGH_SCORE_LIST = 101;
+
+	SC_END = 199;
+}

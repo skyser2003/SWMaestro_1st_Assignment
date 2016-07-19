@@ -1,0 +1,10 @@
+package PKENUM;
+
+enum CSPacketEnum
+{
+	CS_BEGIN = 0;
+
+	CS_HIGH_SCORE = 1;
+
+	CS_END = 99;
+}

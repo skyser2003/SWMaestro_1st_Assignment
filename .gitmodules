@@ -1,0 +1,3 @@
+[submodule "Server/FG-Network"]
+	path = Server/FG-Network
+	url = https://github.com/skyser2003/FG-Network

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Packet">
+      <UniqueIdentifier>{966cc8c1-8586-47ce-b082-dfeb62023049}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Client">
+      <UniqueIdentifier>{49f758f0-b837-47a2-a28c-f4e88fbeb806}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PCH">
+      <UniqueIdentifier>{a3854668-3889-4a17-b797-6e2b667985fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AbstractServer">
+      <UniqueIdentifier>{3ffba985-418f-4076-9f60-3ca9b99723d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Time">
+      <UniqueIdentifier>{4e90a9bd-b0c8-46f6-9813-fe65ae70e041}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DBManager">
+      <UniqueIdentifier>{74b561a9-abf8-4222-9d1f-a26ebdf69243}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\PacketHandler.h">
+      <Filter>Packet</Filter>
+    </ClInclude>
+    <ClInclude Include="include\NetworkClient.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AbstractServer.h">
+      <Filter>AbstractServer</Filter>
+    </ClInclude>
+    <ClInclude Include="pch\stdafx.h">
+      <Filter>PCH</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DeltaTime.h">
+      <Filter>Time</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DBManager.h">
+      <Filter>DBManager</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\NetworkClient.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AbstractServer.cpp">
+      <Filter>AbstractServer</Filter>
+    </ClCompile>
+    <ClCompile Include="pch\stdafx.cpp">
+      <Filter>PCH</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DeltaTime.cpp">
+      <Filter>Time</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DBManager.cpp">
+      <Filter>DBManager</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
