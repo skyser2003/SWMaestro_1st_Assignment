@@ -35,3 +35,6 @@ Client/*.unitypackage
 *.VC.opendb
 *.VC.db
 *.ipch
+
+# NodeJS
+**/node_modules/
