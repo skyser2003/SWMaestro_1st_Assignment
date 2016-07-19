@@ -17,7 +17,7 @@ public class Game : MonoBehaviour {
         for (int i = 0; i < Width; ++i) {
             for (int j = 0; j < Height; ++j) {
                 blockViewList[i, j] = (Instantiate(Resources.Load("Prefabs/Block") as GameObject)).GetComponent<BlockView>();
-                blockViewList[i, j].transform.position = new Vector2(i, j);
+                blockViewList[i, j].transform.position = new Vector3(i, j, -1);
             }
         }
 
@@ -31,28 +31,26 @@ public class Game : MonoBehaviour {
 
         logic = new Logic();
         logic.Init(Width, Height);
-
-        for (int i = 0; i < Width; ++i) {
-            for (int j = 0; j < Height; ++j) {
-                logic.Add(i, j);
-            }
-        }
     }
 
     public void Move(int x, int y)
     {
         logic.Move(x, y);
+
+        RefreshView();
     }
 
     public void RefreshView()
     {
         foreach (var blockView in blockViewList) {
-            blockView.enabled = false;
+            blockView.gameObject.SetActive(false);
         }
 
         foreach (var block in logic.BlockList) {
             var blockView = blockViewList[block.X, block.Y];
-            blockView.enabled = true;
+            blockView.gameObject.SetActive(true);
+
+            blockView.Init(block);
             blockView.Refresh();
         }
     }
