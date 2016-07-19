@@ -38,3 +38,6 @@ Client/*.unitypackage
 
 # NodeJS
 **/node_modules/
+
+# CMake
+build/
