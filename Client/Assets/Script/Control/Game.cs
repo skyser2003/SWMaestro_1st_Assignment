@@ -31,8 +31,8 @@ public class Game : MonoBehaviour {
         for (int i = 0; i < Width; ++i) {
             for (int j = 0; j < Height; ++j) {
                 cellViewList[i, j] = (Instantiate(Resources.Load("Prefabs/Cell") as GameObject)).GetComponent<CellView>();
-                cellViewList[i, j].transform.position = new Vector2(i, j);
                 cellViewList[i, j].transform.SetParent(Field.transform);
+                cellViewList[i, j].transform.localPosition = new Vector2(i, j);
             }
         }
 

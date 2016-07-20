@@ -17,7 +17,7 @@ public class BlockView : MonoBehaviour {
 
     public void Refresh()
     {
-        transform.position = new Vector3(block.X, block.Y, -1);
+        transform.localPosition = new Vector3(block.X, block.Y, -1);
         text.text = block.Value.ToString();
     }
 }
