@@ -41,3 +41,7 @@ Client/*.unitypackage
 
 # CMake
 build/
+
+# Project specific
+**/Autogen/
+**/src_proto/
