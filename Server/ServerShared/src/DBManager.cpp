@@ -24,40 +24,6 @@ void DBManager::Init(const std::string& dbName)
 	db->Connect(dbName);
 }
 
-/*
-bool DBManager::Join(const std::string& id, const std::string& pw)
-{
-	if (db == nullptr)
-	{
-		return false;
-	}
-
-	std::string query = "INSERT INTO ACCOUNT (id, pw) VALUES ('" + id + "', '" + pw + "')";
-
-	return db->Query(query);
-}
-
-bool DBManager::Login(const std::string& id, const std::string& pw)
-{
-	if (db == nullptr)
-	{
-		return false;
-	}
-
-	std::string query = "SELECT count(*) FROM ACCOUNT WHERE id = '" + id + "' AND pw = '" + pw + "'";
-
-	bool ret = false;
-
-	db->Query(query, [&ret](int numColumn, char** fieldList, char** columnNameList)
-	{
-		int count = std::stoi(fieldList[0]);
-		ret = (count == 1);
-	});
-
-	return ret;
-}
-*/
-
 bool DBManager::SetHighScore(const std::string& name, int score)
 {
 	if (db == nullptr)
@@ -73,7 +39,7 @@ std::vector<Score> DBManager::GetScoreList()
 {
 	std::vector<Score> ret;
 
-	std::string query = (boost::format("SELECT * FROM HIGH_SCORE ORDER BY score").str());
+	std::string query = (boost::format("SELECT * FROM HIGH_SCORE ORDER BY score DESC").str());
 	db->Query(query, [&ret](int numColumn, char** fieldList, char** columnNameList)
 	{
 		Score score;
