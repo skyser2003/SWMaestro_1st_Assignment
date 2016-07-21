@@ -108,9 +108,15 @@ public class PlayerController : MonoBehaviour {
         endCanvas.gameObject.SetActive(false);
         scoreCanvas.gameObject.SetActive(true);
 
-        for (int i = 0; i < nameList.Count; ++i) {
+        for (int i = 0; i < nameList.Count && i < 5; ++i) {
             var name = nameList[i];
             var score = scoreList[i];
+
+            var nameUI = scoreCanvas.transform.Find("name" + (i + 1)).gameObject.GetComponent<Text>();
+            var scoreUI = scoreCanvas.transform.Find("score" + (i + 1)).gameObject.GetComponent<Text>();
+
+            nameUI.text = name;
+            scoreUI.text = score.ToString();
         }
     }
 
