@@ -20,8 +20,7 @@ public class PlayerController : MonoBehaviour {
         scoreText = scoreUI.GetComponent<Text>();
         nameText = nameUI.GetComponent<Text>();
 
-        endCanvas.gameObject.SetActive(false);
-        scoreCanvas.gameObject.SetActive(false);
+        StartGame();
     }
 
     private void Update()
@@ -96,6 +95,15 @@ public class PlayerController : MonoBehaviour {
         scoreText.text = score.ToString();
     }
 
+    public void StartGame()
+    {
+        endCanvas.gameObject.SetActive(false);
+        scoreCanvas.gameObject.SetActive(false);
+        gameCanvas.gameObject.SetActive(true);
+
+        game.InitLogic();
+    }
+
     public void OnScoreSubmit()
     {
         var netClient = GetComponent<NetworkClient>();
@@ -108,15 +116,22 @@ public class PlayerController : MonoBehaviour {
         endCanvas.gameObject.SetActive(false);
         scoreCanvas.gameObject.SetActive(true);
 
-        for (int i = 0; i < nameList.Count && i < 5; ++i) {
-            var name = nameList[i];
-            var score = scoreList[i];
+        Debug.Log(nameList.Count);
+
+        for (int i = 0; i < nameList.Count || i < 5; ++i) {
+            string name = "";
+            string score = "";
+
+            if (i < nameList.Count) {
+                name = nameList[i];
+                score = scoreList[i].ToString();
+            }
 
             var nameUI = scoreCanvas.transform.Find("name" + (i + 1)).gameObject.GetComponent<Text>();
             var scoreUI = scoreCanvas.transform.Find("score" + (i + 1)).gameObject.GetComponent<Text>();
 
             nameUI.text = name;
-            scoreUI.text = score.ToString();
+            scoreUI.text = score;
         }
     }
 

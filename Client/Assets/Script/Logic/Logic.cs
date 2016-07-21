@@ -23,8 +23,9 @@ public class Logic {
 
         random = new Random();
 
-        AddRandom();
-        AddRandom();
+        for (int i = 0; i < 2; ++i) {
+            AddRandom();
+        }
     }
 
     public void Add(int x, int y)

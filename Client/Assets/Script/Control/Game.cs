@@ -15,8 +15,7 @@ public class Game : MonoBehaviour {
         Width = 4;
         Height = 4;
 
-        logic = new Logic();
-        logic.Init(Width, Height);
+        InitLogic();
 
         blockViewList = new BlockView[Width, Height];
         for (int i = 0; i < Width; ++i) {
@@ -37,6 +36,16 @@ public class Game : MonoBehaviour {
         }
 
         RefreshView();
+    }
+
+    public void InitLogic()
+    {
+        if(logic == null) {
+            logic = new Logic();
+        }
+
+        logic.Init(Width, Height);
+        Field.gameObject.SetActive(true);
     }
 
     public bool Move(int x, int y)
