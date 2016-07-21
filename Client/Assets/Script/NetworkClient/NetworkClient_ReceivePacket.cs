@@ -1,13 +1,20 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public partial class NetworkClient {
     private void OnPacketReceive(PKS.SC_HIGH_SCORE_LIST pks)
     {
-        for(int i = 0; i < pks.name.Count; ++i) {
+        var nameList = new List<string>();
+        var scoreList = new List<int>();
+
+        for (int i = 0; i < pks.name.Count; ++i) {
             var name = pks.name[i];
             var score = pks.score[i];
 
-            Debug.Log("name : " + name + ", score : " + score);
+            nameList.Add(name);
+            scoreList.Add(score);
         }
+
+        GetComponent<PlayerController>().ShowScore(nameList, scoreList);
     }
 }

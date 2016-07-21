@@ -45,6 +45,7 @@ public class Logic {
     public void AddRandom()
     {
         if (BlockList.Count == Width * Height) {
+            UnityEngine.Debug.Log("Full");
             return;
         }
 
@@ -55,6 +56,7 @@ public class Logic {
             if (map[x, y] == null) {
                 int value = random.Next(1, 3) * 2;
                 Add(x, y, value);
+                UnityEngine.Debug.Log("Random block added");
                 break;
             }
         }

@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour {
     public Game game;
-    public Canvas canvas;
+    public Canvas gameCanvas;
+    public Canvas endCanvas;
+    public Canvas scoreCanvas;
 
     private Text scoreText;
     private Text nameText;
@@ -12,12 +15,13 @@ public class PlayerController : MonoBehaviour {
 
     private void Start()
     {
-        var scoreUI = canvas.transform.Find("Text_score");
-        var nameUI = canvas.transform.Find("InputField_name/Text");
+        var scoreUI = endCanvas.transform.Find("Text_score");
+        var nameUI = endCanvas.transform.Find("InputField_name/Text");
         scoreText = scoreUI.GetComponent<Text>();
         nameText = nameUI.GetComponent<Text>();
 
-        canvas.gameObject.SetActive(false);
+        endCanvas.gameObject.SetActive(false);
+        scoreCanvas.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -68,7 +72,7 @@ public class PlayerController : MonoBehaviour {
             game.AddRandom();
             game.RefreshView();
 
-            if (game.IsGameEnd() == true) {
+            if (game.IsGameEnd() == false) {
                 ProcessGameEnd();
             }
             else {
@@ -85,7 +89,8 @@ public class PlayerController : MonoBehaviour {
     {
         Debug.Log("Game end");
         game.Field.SetActive(false);
-        canvas.gameObject.SetActive(true);
+        gameCanvas.gameObject.SetActive(false);
+        endCanvas.gameObject.SetActive(true);
 
         score = 100;
         scoreText.text = score.ToString();
@@ -95,6 +100,18 @@ public class PlayerController : MonoBehaviour {
     {
         var netClient = GetComponent<NetworkClient>();
         netClient.SendHighScorePacket(nameText.text, score);
+    }
+
+    public void ShowScore(List<string> nameList, List<int> scoreList)
+    {
+        gameCanvas.gameObject.SetActive(false);
+        endCanvas.gameObject.SetActive(false);
+        scoreCanvas.gameObject.SetActive(true);
+
+        for (int i = 0; i < nameList.Count; ++i) {
+            var name = nameList[i];
+            var score = scoreList[i];
+        }
     }
 
     public void MoveLeft()
