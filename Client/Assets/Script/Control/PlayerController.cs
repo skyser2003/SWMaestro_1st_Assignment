@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour {
     public Game game;
+
+    public Canvas startCanvas;
     public Canvas gameCanvas;
     public Canvas endCanvas;
     public Canvas scoreCanvas;
@@ -25,7 +27,11 @@ public class PlayerController : MonoBehaviour {
 
         scoreInput = endCanvas.transform.Find("InputField_name").GetComponent<InputField>();
 
-        StartGame();
+        // Canvas
+        endCanvas.gameObject.SetActive(false);
+        scoreCanvas.gameObject.SetActive(false);
+        gameCanvas.gameObject.SetActive(false);
+        startCanvas.gameObject.SetActive(true);
     }
 
     private void Update()
@@ -94,6 +100,7 @@ public class PlayerController : MonoBehaviour {
         Debug.Log("Game end");
         game.Field.SetActive(false);
         gameCanvas.gameObject.SetActive(false);
+        startCanvas.gameObject.SetActive(false);
         endCanvas.gameObject.SetActive(true);
 
         score = 100;
@@ -103,11 +110,12 @@ public class PlayerController : MonoBehaviour {
     public void StartGame()
     {
         scoreInput.text = "";
+        startCanvas.gameObject.SetActive(false);
         endCanvas.gameObject.SetActive(false);
         scoreCanvas.gameObject.SetActive(false);
         gameCanvas.gameObject.SetActive(true);
 
-        game.InitLogic();
+        game.StartGame();
     }
 
     public void OnScoreSubmit()
@@ -122,9 +130,7 @@ public class PlayerController : MonoBehaviour {
         endCanvas.gameObject.SetActive(false);
         scoreCanvas.gameObject.SetActive(true);
 
-        Debug.Log(nameList.Count);
-
-        for (int i = 0; i < nameList.Count || i < 5; ++i) {
+        for (int i = 0; i < 5; ++i) {
             string name = "";
             string score = "";
 

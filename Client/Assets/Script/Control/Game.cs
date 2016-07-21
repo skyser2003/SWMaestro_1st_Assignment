@@ -35,12 +35,21 @@ public class Game : MonoBehaviour {
             }
         }
 
+        Field.gameObject.SetActive(false);
+    }
+
+    public void StartGame()
+    {
+        InitLogic();
+
+        Field.gameObject.SetActive(true);
+
         RefreshView();
     }
 
     public void InitLogic()
     {
-        if(logic == null) {
+        if (logic == null) {
             logic = new Logic();
         }
 
