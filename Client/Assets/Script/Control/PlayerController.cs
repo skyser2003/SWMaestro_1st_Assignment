@@ -13,12 +13,17 @@ public class PlayerController : MonoBehaviour {
     private Text nameText;
     private int score;
 
+    private InputField scoreInput;
+
     private void Start()
     {
         var scoreUI = endCanvas.transform.Find("Text_score");
         var nameUI = endCanvas.transform.Find("InputField_name/Text");
+
         scoreText = scoreUI.GetComponent<Text>();
         nameText = nameUI.GetComponent<Text>();
+
+        scoreInput = endCanvas.transform.Find("InputField_name").GetComponent<InputField>();
 
         StartGame();
     }
@@ -92,11 +97,12 @@ public class PlayerController : MonoBehaviour {
         endCanvas.gameObject.SetActive(true);
 
         score = 100;
-        scoreText.text = score.ToString();
+        scoreText.text = score.ToString() + " pt";
     }
 
     public void StartGame()
     {
+        scoreInput.text = "";
         endCanvas.gameObject.SetActive(false);
         scoreCanvas.gameObject.SetActive(false);
         gameCanvas.gameObject.SetActive(true);
@@ -123,8 +129,8 @@ public class PlayerController : MonoBehaviour {
             string score = "";
 
             if (i < nameList.Count) {
-                name = nameList[i];
-                score = scoreList[i].ToString();
+                name = (i + 1) + ". " + nameList[i];
+                score = scoreList[i].ToString() + " pt";
             }
 
             var nameUI = scoreCanvas.transform.Find("name" + (i + 1)).gameObject.GetComponent<Text>();
