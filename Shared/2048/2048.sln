@@ -21,6 +21,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PacketProtobuf", "..\..\Ser
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Packet", "..\..\Server\Packet\Packet.vcxproj", "{9FE3E431-F858-4E22-9DB2-3C36DC6722A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.CSharp.Editor", "..\..\Client\Client.CSharp.Editor.csproj", "{FFA84358-2581-9E82-B8D0-24FDA2D88134}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +87,14 @@ Global
 		{9FE3E431-F858-4E22-9DB2-3C36DC6722A9}.Release|Any CPU.ActiveCfg = Release|x64
 		{9FE3E431-F858-4E22-9DB2-3C36DC6722A9}.Release|x64.ActiveCfg = Release|x64
 		{9FE3E431-F858-4E22-9DB2-3C36DC6722A9}.Release|x64.Build.0 = Release|x64
+		{FFA84358-2581-9E82-B8D0-24FDA2D88134}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFA84358-2581-9E82-B8D0-24FDA2D88134}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFA84358-2581-9E82-B8D0-24FDA2D88134}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FFA84358-2581-9E82-B8D0-24FDA2D88134}.Debug|x64.Build.0 = Debug|Any CPU
+		{FFA84358-2581-9E82-B8D0-24FDA2D88134}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFA84358-2581-9E82-B8D0-24FDA2D88134}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFA84358-2581-9E82-B8D0-24FDA2D88134}.Release|x64.ActiveCfg = Release|Any CPU
+		{FFA84358-2581-9E82-B8D0-24FDA2D88134}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
