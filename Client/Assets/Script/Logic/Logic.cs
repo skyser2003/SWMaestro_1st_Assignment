@@ -13,6 +13,8 @@ public class Logic {
 
     public Random random;
 
+    public int LargestNumber { get; private set; }
+
     public void Init(int width, int height)
     {
         Width = width;
@@ -25,6 +27,15 @@ public class Logic {
 
         for (int i = 0; i < 2; ++i) {
             AddRandom();
+        }
+
+        UpdateLargestNumber();
+    }
+
+    public void UpdateLargestNumber()
+    {
+        for (int i = 0; i < BlockList.Count; ++i) {
+            LargestNumber = Math.Max(LargestNumber, BlockList[i].Value);
         }
     }
 
@@ -254,6 +265,9 @@ public class Logic {
                 newY += deltaY;
             }
         }
+
+        // Update largest value
+        UpdateLargestNumber();
 
         // Check if changed
         for (int i = 0; i < Width; ++i) {

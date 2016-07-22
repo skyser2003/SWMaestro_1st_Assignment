@@ -10,6 +10,8 @@ public class Game : MonoBehaviour {
 
     public GameObject Field;
 
+    public int LargestNumber { get { return logic.LargestNumber; } }
+
     private void Start()
     {
         Width = 4;

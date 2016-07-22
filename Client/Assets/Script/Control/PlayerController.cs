@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour {
         startCanvas.gameObject.SetActive(false);
         endCanvas.gameObject.SetActive(true);
 
-        score = 100;
+        score = game.LargestNumber;
         scoreText.text = score.ToString() + " pt";
     }
 
