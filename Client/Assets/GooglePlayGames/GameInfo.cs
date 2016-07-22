@@ -39,7 +39,7 @@ namespace GooglePlayGames {
 
         public const string ApplicationId = "842618208304"; // Filled in automatically
         public const string IosClientId = ""; // Filled in automatically
-        public const string WebClientId = ""; // Filled in automatically
+        public const string WebClientId = "842618208304-q9qgt712m79lnp2mrugulbu658knla72.apps.googleusercontent.com"; // Filled in automatically
         public const string NearbyConnectionServiceId = "";
 
         public static bool RequireGooglePlus()

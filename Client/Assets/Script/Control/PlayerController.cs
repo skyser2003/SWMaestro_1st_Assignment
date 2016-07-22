@@ -1,10 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
-
 using GooglePlayGames;
-using UnityEngine.SocialPlatforms;
 
 public class PlayerController : MonoBehaviour {
     public Game game;
@@ -18,8 +15,6 @@ public class PlayerController : MonoBehaviour {
     private InputField nameText;
     private int score;
 
-    private InputField scoreInput;
-
     private void Start()
     {
         var scoreUI = endCanvas.transform.Find("Text_score");
@@ -28,8 +23,6 @@ public class PlayerController : MonoBehaviour {
         scoreText = scoreUI.GetComponent<Text>();
         nameText = nameUI.GetComponent<InputField>();
 
-        scoreInput = endCanvas.transform.Find("InputField_name").GetComponent<InputField>();
-
         // Canvas
         endCanvas.gameObject.SetActive(false);
         scoreCanvas.gameObject.SetActive(false);
@@ -37,14 +30,20 @@ public class PlayerController : MonoBehaviour {
         startCanvas.gameObject.SetActive(true);
 
         // Google login
+        PlayGamesPlatform.Activate();
         Social.localUser.Authenticate((bool success) => {
             if (success == true) {
-                nameText.name = Social.localUser.id;
+                nameText.text = Social.localUser.userName;
                 nameText.enabled = false;
 
-                Debug.Log("Google login success : " + Social.localUser.id);
+                Debug.Log("Google login success : " + Social.localUser.userName);
+
+                Social.ReportProgress("CgkIsIDW_8IYEAIQAA", 100.0f, (bool success2) => {
+                    // handle success or failure
+                });
             }
             else {
+                nameText.text = "Failed";
                 Debug.Log("Google login failed");
             }
         });
@@ -113,6 +112,10 @@ public class PlayerController : MonoBehaviour {
 
     public void ProcessGameEnd()
     {
+        Social.ReportProgress("CgkIsIDW_8IYEAIQAQ", 100.0f, (bool success2) => {
+            // handle success or failure
+        });
+
         Debug.Log("Game end");
         game.Field.SetActive(false);
         gameCanvas.gameObject.SetActive(false);
@@ -123,9 +126,21 @@ public class PlayerController : MonoBehaviour {
         scoreText.text = score.ToString() + " pt";
     }
 
+    public void Restart()
+    {
+        Social.ReportProgress("CgkIsIDW_8IYEAIQAw", 100.0f, (bool success2) => {
+            // handle success or failure
+        });
+
+        StartGame();
+    }
+
     public void StartGame()
     {
-        scoreInput.text = "";
+        Social.ReportProgress("CgkIsIDW_8IYEAIQAg", 100.0f, (bool success2) => {
+            // handle success or failure
+        });
+
         startCanvas.gameObject.SetActive(false);
         endCanvas.gameObject.SetActive(false);
         scoreCanvas.gameObject.SetActive(false);
@@ -142,6 +157,10 @@ public class PlayerController : MonoBehaviour {
 
     public void ShowScore(List<string> nameList, List<int> scoreList)
     {
+        Social.ReportProgress("CgkIsIDW_8IYEAIQBA", 100.0f, (bool success2) => {
+            // handle success or failure
+        });
+
         gameCanvas.gameObject.SetActive(false);
         endCanvas.gameObject.SetActive(false);
         scoreCanvas.gameObject.SetActive(true);
