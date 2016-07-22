@@ -879,7 +879,9 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: '2048
 
-    Diagnoal'
+    Unlimited
+
+    Diagonal'
 --- !u!222 &516148142
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3424,7 +3426,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1748697227
 MonoBehaviour:
   m_ObjectHideFlags: 0
