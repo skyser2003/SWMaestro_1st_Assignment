@@ -3,6 +3,9 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
+using GooglePlayGames;
+using UnityEngine.SocialPlatforms;
+
 public class PlayerController : MonoBehaviour {
     public Game game;
 
@@ -12,7 +15,7 @@ public class PlayerController : MonoBehaviour {
     public Canvas scoreCanvas;
 
     private Text scoreText;
-    private Text nameText;
+    private InputField nameText;
     private int score;
 
     private InputField scoreInput;
@@ -20,10 +23,10 @@ public class PlayerController : MonoBehaviour {
     private void Start()
     {
         var scoreUI = endCanvas.transform.Find("Text_score");
-        var nameUI = endCanvas.transform.Find("InputField_name/Text");
+        var nameUI = endCanvas.transform.Find("InputField_name");
 
         scoreText = scoreUI.GetComponent<Text>();
-        nameText = nameUI.GetComponent<Text>();
+        nameText = nameUI.GetComponent<InputField>();
 
         scoreInput = endCanvas.transform.Find("InputField_name").GetComponent<InputField>();
 
@@ -32,6 +35,19 @@ public class PlayerController : MonoBehaviour {
         scoreCanvas.gameObject.SetActive(false);
         gameCanvas.gameObject.SetActive(false);
         startCanvas.gameObject.SetActive(true);
+
+        // Google login
+        Social.localUser.Authenticate((bool success) => {
+            if (success == true) {
+                nameText.name = Social.localUser.id;
+                nameText.enabled = false;
+
+                Debug.Log("Google login success : " + Social.localUser.id);
+            }
+            else {
+                Debug.Log("Google login failed");
+            }
+        });
     }
 
     private void Update()
@@ -95,7 +111,7 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    private void ProcessGameEnd()
+    public void ProcessGameEnd()
     {
         Debug.Log("Game end");
         game.Field.SetActive(false);
