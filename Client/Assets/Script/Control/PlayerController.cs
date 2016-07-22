@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour {
             game.AddRandom();
             game.RefreshView();
 
-            if (game.IsGameEnd() == false) {
+            if (game.IsGameEnd() == true) {
                 ProcessGameEnd();
             }
             else {
