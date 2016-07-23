@@ -24,11 +24,11 @@
 
 public static class GoogleConstants
 {
-        public const string achievement_restart = "CgkIsIDW_8IYEAIQAw"; // <GPGSID>
-        public const string achievement_finished = "CgkIsIDW_8IYEAIQAQ"; // <GPGSID>
-        public const string achievement_score = "CgkIsIDW_8IYEAIQBA"; // <GPGSID>
-        public const string achievement_welcome = "CgkIsIDW_8IYEAIQAA"; // <GPGSID>
-        public const string achievement_first_game = "CgkIsIDW_8IYEAIQAg"; // <GPGSID>
+        public const string achievement_restart = "CgkI3Zy_u_kCEAIQBQ"; // <GPGSID>
+        public const string achievement_first = "CgkI3Zy_u_kCEAIQBA"; // <GPGSID>
+        public const string achievement_score = "CgkI3Zy_u_kCEAIQBg"; // <GPGSID>
+        public const string achievement_welcome = "CgkI3Zy_u_kCEAIQAg"; // <GPGSID>
+        public const string achievement_submit = "CgkI3Zy_u_kCEAIQBw"; // <GPGSID>
 
 }
 

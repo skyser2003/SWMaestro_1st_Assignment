@@ -90,14 +90,14 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleIdentifier: com.Eiffel.diag
-  bundleVersion: 1.0
+  bundleVersion: 1.1
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
   metroEnableLowLatencyPresentationAPI: 0
   xboxOneDisableKinectGpuReservation: 0
   virtualRealitySupported: 0
   productGUID: 3ed6b86be5ca93c4fa7e1ab2a428263a
-  AndroidBundleVersionCode: 1
+  AndroidBundleVersionCode: 2
   AndroidMinSdkVersion: 19
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -160,7 +160,7 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: E:/Downloads/keystore/key.keystore
+  AndroidKeystoreName: E:/Downloads/keystore/key.jks
   AndroidKeyaliasName: pikachu
   AndroidTVCompatibility: 1
   AndroidIsGame: 1

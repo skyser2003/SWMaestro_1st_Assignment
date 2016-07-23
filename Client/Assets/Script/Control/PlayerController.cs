@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour {
 
                 Debug.Log("Google login success : " + Social.localUser.userName);
 
-                Social.ReportProgress("CgkIsIDW_8IYEAIQAA", 100.0f, (bool success2) => {
+                Social.ReportProgress(GoogleConstants.achievement_welcome, 100.0f, (bool success2) => {
                     // handle success or failure
                 });
             }
@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour {
 
     public void ProcessGameEnd()
     {
-        Social.ReportProgress("CgkIsIDW_8IYEAIQAQ", 100.0f, (bool success2) => {
+        Social.ReportProgress(GoogleConstants.achievement_score, 100.0f, (bool success2) => {
             // handle success or failure
         });
 
@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour {
 
     public void Restart()
     {
-        Social.ReportProgress("CgkIsIDW_8IYEAIQAw", 100.0f, (bool success2) => {
+        Social.ReportProgress(GoogleConstants.achievement_restart, 100.0f, (bool success2) => {
             // handle success or failure
         });
 
@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour {
 
     public void StartGame()
     {
-        Social.ReportProgress("CgkIsIDW_8IYEAIQAg", 100.0f, (bool success2) => {
+        Social.ReportProgress(GoogleConstants.achievement_first, 100.0f, (bool success2) => {
             // handle success or failure
         });
 
@@ -157,7 +157,7 @@ public class PlayerController : MonoBehaviour {
 
     public void ShowScore(List<string> nameList, List<int> scoreList)
     {
-        Social.ReportProgress("CgkIsIDW_8IYEAIQBA", 100.0f, (bool success2) => {
+        Social.ReportProgress(GoogleConstants.achievement_score, 100.0f, (bool success2) => {
             // handle success or failure
         });
 
